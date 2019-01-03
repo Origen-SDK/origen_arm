@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = "origen_arm"
   spec.version       = OrigenARM::VERSION
   spec.authors       = ["Corey Engelken"]
-  spec.email         = ["corey.engelken@nxp.com"]
+  spec.email         = ["coreyengelken@gmail.com"]
   spec.summary       = "Origen subblocks modeling ARM cores."
   #spec.homepage      = "http://origen.mycompany.net/origen_arm"
 
