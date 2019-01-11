@@ -8,7 +8,7 @@ gem 'origen_doc_helpers'
 gem 'origen_jtag'
 gem 'origen_arm_debug'
 
-gem 'origen_updater'
+#gem 'origen_updater'
 # Uncomment these if you want to use a visual debugger (e.g. Visual Studio Code) to debug your app
 #gem 'ruby-debug-ide'
 #gem 'debase'
