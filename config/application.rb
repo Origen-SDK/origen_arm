@@ -11,6 +11,8 @@ class OrigenARMApplication < Origen::Application
   config.name     = "origen_arm"
   config.initials = "OrigenARM"
   config.rc_url   = "git@github.com:Origen-SDK/origen_arm.git"
+  config.release_externally = true
+  config.gem_name = "origen_arm"
 
   # To enable deployment of your documentation to a web server (via the 'origen web'
   # command) fill in these attributes.

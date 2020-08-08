@@ -8,7 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Corey Engelken"]
   spec.email         = ["coreyengelken@gmail.com"]
   spec.summary       = "Origen subblocks modeling ARM cores."
-  #spec.homepage      = "http://origen.mycompany.net/origen_arm"
+  spec.homepage      = "https://origen-sdk.org/arm/"
+  spec.license       = 'MIT'
 
   spec.required_ruby_version     = '>= 2'
   spec.required_rubygems_version = '>= 1.8.11'

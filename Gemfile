@@ -1,5 +1,3 @@
-source 'http://rgen-hub.nxdi.nxp.com:9292'
-
 # Only development dependencies (things your plugin needs only when it is running in its own workspace)
 # should be listed here in the Gemfile
 gem 'byebug', '<9.1.0' # This version restriction required if you need Ruby < 2.2, otherwise you can remove it
