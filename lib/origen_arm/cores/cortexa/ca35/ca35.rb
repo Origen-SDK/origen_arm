@@ -2,7 +2,6 @@ module OrigenARM
   module Cores
     module CortexA
       class CA35 < OrigenARM::Cores::Base
-      
         TRACE_DBG_EDPRSR_OFFSET = 0x314
         TRACE_LAR_OFFSET = 0xFB0
         TRACE_OSLAR_OFFSET = 0x300
@@ -16,12 +15,12 @@ module OrigenARM
         TRACE_DBG_DTRRX_OFFSET = 0x80
         CTI_BASE = 0x0042_0000
         DBG_BASE = 0x0041_0000
-        
-        def initialize(options={})
+
+        def initialize(options = {})
           super
           instantiate_registers(options)
         end
-        
+
         def instantiate_registers(options)
           add_reg(:trace_dbg_edprsr, DBG_BASE + TRACE_DBG_EDPRSR_OFFSET, size: 32)
           add_reg(:trace_dbg_editr, DBG_BASE + TRACE_DBG_EDITR_OFFSET, size: 32)
@@ -41,4 +40,3 @@ module OrigenARM
     end
   end
 end
-

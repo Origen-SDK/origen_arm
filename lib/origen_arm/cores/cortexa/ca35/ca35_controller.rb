@@ -2,16 +2,15 @@ module OrigenARM
   module Cores
     module CortexA
       class CA35Controller < OrigenARM::Cores::BaseController
-
         def initialize_core(pc:, release_core: false, **options)
           halt_core!
           set_pc!(pc)
-          
+
           if release_core
             release_core!
           end
         end
-        
+
         def halt_core!
           ss 'Halt core - channel 0'
           reg(:trace_cti_lar).write!(0xC5AC_CE55)
@@ -31,7 +30,7 @@ module OrigenARM
           reg(:trace_dbg_oslar).write!(0xABCD_1234)
           tester.cycle(repeat: 100)
         end
-        
+
         def release_core!
           ss 'Release core - channel 2'
           reg(:trace_cti_lar).write!(0xC5AC_CE55)
@@ -42,7 +41,7 @@ module OrigenARM
           ss 'Check that the core has been released'
           reg(:trace_dbg_edprsr).read!(0x0, mask: 0x0000_0010)
         end
-        
+
         def set_pc!(pc)
           ss 'Move the PC'
           reg(:trace_dbg_dtrtx).write!((pc >> 32) & 0xFFFF_FFFF)
@@ -52,9 +51,7 @@ module OrigenARM
           reg(:trace_dbg_editr).write!(0xD51B_4521)
           tester.cycle(repeat: 100)
         end
-
       end
     end
   end
 end
-

@@ -16,17 +16,17 @@ module OrigenARM
         # @todo Implement lower and upper stack pointer limit setting.
         def initialize_core(pc:, sp:, release_core: false, sp_lower_limit: nil, sp_upper_limit: nil)
           enter_debug_mode
-          
-          #clear_state
-          #clear_state
-      
-          #ss 'Disable the MPU and the SAU'
-          #mem(0xE000_ED94).write!(0x0, force_arm_debug: true)
-          #mem(0xE000_EDD0).write!(0x0, force_arm_debug: true)
 
-          #ss 'Move the stack pointer limits'
-          #mem(0xE000_EDF8).write!(0x1400_6800, force_arm_debug: true)
-          #mem(0xE000_EDF4).write!(0x0001_0000 + 0x1C, force_arm_debug: true)
+          # clear_state
+          # clear_state
+
+          # ss 'Disable the MPU and the SAU'
+          # mem(0xE000_ED94).write!(0x0, force_arm_debug: true)
+          # mem(0xE000_EDD0).write!(0x0, force_arm_debug: true)
+
+          # ss 'Move the stack pointer limits'
+          # mem(0xE000_EDF8).write!(0x1400_6800, force_arm_debug: true)
+          # mem(0xE000_EDF4).write!(0x0001_0000 + 0x1C, force_arm_debug: true)
 
           set_sp(sp)
           set_pc(pc)
@@ -34,9 +34,9 @@ module OrigenARM
           # set_stack_limits(sp_lower_limit, sp_upper_limit) if (sp_lower_limit || sp_upper_limit)
           exit_debug_mode(release_core: release_core)
 
-          #reg(:aircr).bits(:vectkey).write(CM33::Registers::AIRCR_WRITE_KEY)
-          #reg(:aircr).bits(:sysresetreq).write(1)
-          #reg(:aircr).write!
+          # reg(:aircr).bits(:vectkey).write(CM33::Registers::AIRCR_WRITE_KEY)
+          # reg(:aircr).bits(:sysresetreq).write(1)
+          # reg(:aircr).write!
         end
         alias_method :initialize_for_lre, :initialize_core
 
@@ -105,16 +105,16 @@ module OrigenARM
           end
         end
 
-        #def clear_state
+        # def clear_state
         #  pp("Clear the core's current state") do
         #    reg(:aircr).bits(:vectkey).write(CM33::Registers::AIRCR_WRITE_KEY)
         #    reg(:aircr).bits(:sysresetreq).write(1)
         #    #reg(:aircr).bits(:vectclractive).write(1)
         #    reg(:aircr).write!
-        #    
+        #
         #    tester.cycle(repeat: 1000)
         #  end
-        #end
+        # end
 
         # def set_stack_limits(lower_limit, upper_limits, stack: :msp, **options)
         # end
