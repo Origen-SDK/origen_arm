@@ -2,7 +2,7 @@ module OrigenARM
   module Cores
     module CortexA
       class CA35Controller < OrigenARM::Cores::BaseController
-        def initialize_core(pc:, release_core: false, **options)
+        def initialize_core(pc:, sp: nil, release_core: false, **options)
           halt_core!
           set_pc!(pc)
 
@@ -15,8 +15,8 @@ module OrigenARM
           ss 'Halt core - channel 0'
           reg(:trace_cti_lar).write!(0xC5AC_CE55)
           reg(:trace_cti_ctrl).write!(0x1)
-          reg(:trace_cti_outen0).write!(0x1)
-          reg(:trace_cti_apppulse).write!(0x1)
+          reg(:trace_cti_outen0).write!(halt_channel)
+          reg(:trace_cti_apppulse).write!(halt_channel)
           tester.cycle(repeat: 10_000)
 
           ss 'Check that the core is halted'
@@ -27,7 +27,7 @@ module OrigenARM
           tester.cycle(repeat: 100)
 
           reg(:trace_dbg_lar).write!(0xC5AC_CE55)
-          reg(:trace_dbg_oslar).write!(0xABCD_1234)
+          reg(:trace_dbg_oslar).write!(0)
           tester.cycle(repeat: 100)
         end
 
@@ -35,8 +35,8 @@ module OrigenARM
           ss 'Release core - channel 2'
           reg(:trace_cti_lar).write!(0xC5AC_CE55)
           reg(:trace_cti_ctrl).write!(0x1)
-          reg(:trace_cti_outen1).write!(0x4)
-          reg(:trace_cti_apppulse).write!(0x4)
+          reg(:trace_cti_outen1).write!(release_channel) # 0x4)
+          reg(:trace_cti_apppulse).write!(release_channel) # (0x4)
           tester.cycle(repeat: 100)
           ss 'Check that the core has been released'
           reg(:trace_dbg_edprsr).read!(0x0, mask: 0x0000_0010)

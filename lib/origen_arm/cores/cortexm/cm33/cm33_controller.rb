@@ -14,8 +14,8 @@ module OrigenARM
         # @param sp_lower_limit [Fixnum] Sets stack pointer's lower limit.
         # @param sp_upper_limit [Fixnum] Sets stack pointer's upper limit.
         # @todo Implement lower and upper stack pointer limit setting.
-        def initialize_core(pc:, sp:, release_core: false, sp_lower_limit: nil, sp_upper_limit: nil)
-          enter_debug_mode
+        def initialize_core(pc:, sp:, release_core: false, sp_lower_limit: nil, sp_upper_limit: nil, release_cpu_wait: true)
+          enter_debug_mode(release_cpu_wait: release_cpu_wait)
 
           # clear_state
           # clear_state
@@ -44,7 +44,7 @@ module OrigenARM
         # @param halt_core [true, false] Indicates whether the core should be held when entering debug mode.
         #   Some functionality may not work correctly if the core is not halted,
         #   but a halted core is not a requirement for debug mode.
-        def enter_debug_mode(halt_core: true)
+        def enter_debug_mode(halt_core: true, release_cpu_wait: true)
           pp('Entering Debug Mode...') do
             reg(:dhcsr).bits(:dbgkey).write(OrigenARM::Cores::CortexM::CM33::Registers::DHCSR_DBGKEY)
             reg(:dhcsr).bits(:c_debugen).write(1)
@@ -58,6 +58,12 @@ module OrigenARM
               reg(:dhcsr).bits(:c_halt).write(1)
               reg(:dhcsr).write!
               enter_debug_mode_delay!
+            end
+
+            if release_cpu_wait
+              if cpu_wait_release
+                cpu_wait_release.call(self)
+              end
             end
           end
         end

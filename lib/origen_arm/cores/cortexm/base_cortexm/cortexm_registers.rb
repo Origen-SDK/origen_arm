@@ -74,7 +74,7 @@ module OrigenARM
             # XPSR
             # Note: This register also seems mostly stable across the entire
             # CortexM family, but may need to be revisited as more cores are added.
-            dut.add_reg(:xpsr, 0x0, size: 32, description: 'Combined Program Status Register. Combination of APSR, EPSR, and IPSR Registers on Other ARM Cores.') do |r|
+            dut.add_reg(:xpsr, 0x10, size: 32, description: 'Combined Program Status Register. Combination of APSR, EPSR, and IPSR Registers on Other ARM Cores.') do |r|
               r.bits 31, :n, description: 'Negative flag. Reads or writes the current value of APSR.N.'
               r.bits 30, :z, description: 'Zero flag. Reads or writes the current value of APSR.Z.'
               r.bits 29, :c, description: 'Carry flag. Reads or writes the current value of APSR.C.'
