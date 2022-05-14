@@ -14,6 +14,7 @@ module OrigenARM
         # @param sp_lower_limit [Fixnum] Sets stack pointer's lower limit.
         # @param sp_upper_limit [Fixnum] Sets stack pointer's upper limit.
         # @todo Implement lower and upper stack pointer limit setting.
+        # rubocop:disable Metrics/ParameterLists
         def initialize_core(pc:, sp:, release_core: false, sp_lower_limit: nil, sp_upper_limit: nil, release_cpu_wait: true)
           enter_debug_mode(release_cpu_wait: release_cpu_wait)
 
@@ -38,6 +39,7 @@ module OrigenARM
           # reg(:aircr).bits(:sysresetreq).write(1)
           # reg(:aircr).write!
         end
+        # rubocop:enable Metrics/ParameterLists
         alias_method :initialize_for_lre, :initialize_core
 
         # Enters the core's debug mode.
