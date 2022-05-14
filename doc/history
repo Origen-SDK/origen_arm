@@ -1,3 +1,14 @@
+<a class="anchor release_tag" name="v0_1_2"></a>
+<h1><a href="#v0_1_2">Tag: v0.1.2</a></h1>
+
+##### Branch: 'master'
+
+##### by Corey Engelken on 14-May-2022 12:54PM
+
+
+Bugfix for xpsr register offset in CM cores. Support CPU wait releasing (SoC specific).
+Support multiple channels for A35.
+
 <a class="anchor release_tag" name="v0_1_1"></a>
 <h1><a href="#v0_1_1">Tag: v0.1.1</a></h1>
 
